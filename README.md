@@ -26,7 +26,7 @@ The plan has 16 weeks. Topics for later weeks can be refined as we assess progre
 | Week | Day | Topic | Status | Notes |
 | --- | --- | --- | --- | --- |
 | 1 | 1 | Add to Cart: end-to-end request lifecycle | ✅ Completed | [Day 1](week-01-foundations/day-01-request-lifecycle.md) |
-| 1 | 2 | Client-server architecture | ⏳ Not started — awaiting approval | — |
+| 1 | 2 | Client-server architecture | ✅ Completed | [Day 2](week-01-foundations/day-02-client-server-architecture.md) |
 
 Later entries will be added after the corresponding lessons.
 
@@ -36,7 +36,8 @@ Later entries will be added after the corresponding lessons.
 fullstack-system-design/
 ├── README.md
 └── week-01-foundations/
-    └── day-01-request-lifecycle.md
+    ├── day-01-request-lifecycle.md
+    └── day-02-client-server-architecture.md
 ```
 
 **Revision rule:** Keep examples short, emphasize tradeoffs/failure cases, and add code only where it clarifies a design decision.
