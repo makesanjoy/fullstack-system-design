@@ -1,36 +1,41 @@
-# Full-Stack System Design — Interview Preparation
+# Full-Stack System Design
 
-Concise revision notes for **React + Node.js full-stack interviews** (HLD, LLD, frontend architecture, backend, databases, and deployment). DSA practice is maintained separately.
+Practical, engineering-focused guides to designing reliable web applications with **React, Node.js, HTTP APIs, and databases**.
 
-## Learning workflow
+The material follows realistic application flows and explains not only how components communicate, but also what happens when requests fail, data changes concurrently, or services scale beyond one server. Examples are intentionally small; the design principles apply to larger systems.
 
-1. Learn one practical concept at a time using a real application example.
-2. Answer one interview question at a time.
-3. Finish a practical explanation and mastery check before marking a day complete.
-4. Save only essential concepts, examples, mistakes, and interview takeaways here.
-5. **Ask for approval before moving to the next day.**
+## Start here
 
-## 16-week roadmap
+| Guide | What you'll learn |
+| --- | --- |
+| [HTTP Request Lifecycle](week-01-foundations/day-01-request-lifecycle.md) | Trace an Add to Cart request from the browser to the database and back; understand HTTP methods, status codes, and safe retries. |
+| [Client–Server Architecture](week-01-foundations/day-02-client-server-architecture.md) | Define client/server responsibilities, build a trust boundary, share sessions across servers, and prevent duplicate writes. |
 
-The plan has 16 weeks. Topics for later weeks can be refined as we assess progress; the GitHub notes document **completed learning**, not speculative lessons.
+## Architecture in scope
 
-| Phase | Weeks | Focus |
-| --- | --- | --- |
-| Foundations | 1–4 | Request lifecycle, client-server fundamentals, networking, API design |
-| Backend & data | 5–8 | Node.js architecture, databases, caching, reliability |
-| Architecture | 9–12 | HLD, scaling, distributed-system tradeoffs |
-| Interview readiness | 13–16 | React/frontend design, LLD, deployment, full-stack design practice |
+```text
+Browser (React)
+    │ HTTPS / JSON
+    ▼
+Load balancer / API entry point
+    │
+    ▼
+Node.js + Express API instances
+    ├── Shared infrastructure (for example, Redis sessions)
+    └── Persistent data store (for example, PostgreSQL or MongoDB)
+```
 
-## Progress tracker
+The guides use **PostgreSQL** in the request-lifecycle example and **MongoDB** in the multi-server example. These are alternative illustrative data stores, not a requirement to deploy both for the same cart.
 
-| Week | Day | Topic | Status | Notes |
-| --- | --- | --- | --- | --- |
-| 1 | 1 | Add to Cart: end-to-end request lifecycle | ✅ Completed | [Day 1](week-01-foundations/day-01-request-lifecycle.md) |
-| 1 | 2 | Client-server architecture | ✅ Completed | [Day 2](week-01-foundations/day-02-client-server-architecture.md) |
+## Engineering principles
 
-Later entries will be added after the corresponding lessons.
+- **Trust the server, not the browser.** Authenticate users, authorize operations, and validate business rules on the API.
+- **Define API behavior precisely.** Request shapes, response codes, and retry semantics are part of the contract.
+- **Treat failures as normal.** A timeout does not tell the client whether a database write committed.
+- **Design for concurrency.** Multiple API instances may receive the same operation simultaneously.
+- **Choose storage guarantees deliberately.** Caches and short-lived locks are not substitutes for durable data integrity.
 
-## Folder structure
+## Repository layout
 
 ```text
 fullstack-system-design/
@@ -40,4 +45,4 @@ fullstack-system-design/
     └── day-02-client-server-architecture.md
 ```
 
-**Revision rule:** Keep examples short, emphasize tradeoffs/failure cases, and add code only where it clarifies a design decision.
+Each guide can be read independently and includes an architecture flow, practical examples, failure scenarios, and engineering trade-offs. The numbered filenames provide a reading order; the articles themselves are general-purpose technical references.
